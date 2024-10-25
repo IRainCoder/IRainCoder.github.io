@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  GITBOOKDIR: ~/work/${{ github.event.repository.name }}/gitbook
+  GITBOOKDIR: ~/work/gitbook-docker/gitbook
 
 jobs:
   deploy:
