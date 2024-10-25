@@ -22,9 +22,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  # Single deploy job since we're just deploying
+  deploy:
     environment:
-      name: AZURE_152
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Set up SSH
@@ -34,7 +36,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "${{ vars.AZURE_152_HOST }}" >> ~/.ssh/known_hosts
       
-      - name: Checkout mian
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: main
@@ -45,29 +47,18 @@ jobs:
           ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "if [ -d $GITBOOKDIR/notes ]; then sudo rm -rf $GITBOOKDIR/notes; fi"
           scp -r ${{ github.workspace }}/notes ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/
           ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "docker run --rm --name gitbook_v3.2.3 -v /home/v2ray/work/gitbook-docker/gitbook/notes:/gitbook/docs -v /home/v2ray/work/gitbook-docker/gitbook/book:/gitbook/_book -p 80:4000 gitbook:3.2.3 gitbook build"
-
-      - name: Copy HTML
-        run: |
           rm -rf ${{ github.workspace }}/book
           scp -r ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/book  ${{ github.workspace }}/
-
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: './book'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
