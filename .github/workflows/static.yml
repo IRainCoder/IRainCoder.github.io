@@ -47,7 +47,7 @@ jobs:
         run: |
           ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "if [ -d $GITBOOKDIR/notes ]; then sudo rm -rf $GITBOOKDIR/notes; fi"
           scp -r ${{ github.workspace }}/notes ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/
-          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "bash $GITBOOKDIR/build.sh"
+          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "docker run --rm --name gitbook_v3.2.3 -v /home/v2ray/work/gitbook-docker/gitbook/notes:/gitbook/docs -v /home/v2ray/work/gitbook-docker/gitbook/book:/gitbook/_book -p 80:4000 gitbook:3.2.3 gitbook build"
       
       - name: Checkout gh-page
         uses: actions/checkout@v4
