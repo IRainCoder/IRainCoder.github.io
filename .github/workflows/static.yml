@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: CI
+name: Gitbook Build CI
 
 on:
   # Runs on pushes targeting the default branch
@@ -47,29 +47,29 @@ jobs:
         run: |
           ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "if [ -d $GITBOOKDIR/notes ]; then sudo rm -rf $GITBOOKDIR/notes; fi"
           scp -r ${{ github.workspace }}/notes ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/
-          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "docker run --rm --name gitbook_v3.2.3 -v /home/v2ray/work/gitbook-docker/gitbook/notes:/gitbook/docs -v /home/v2ray/work/gitbook-docker/gitbook/book:/gitbook/_book -p 80:4000 -it gitbook:3.2.3 gitbook build"
+          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "gitbook build"
       
-      # - name: Checkout gh-page
-      #   uses: actions/checkout@v4
-      #   with:
-      #     ref: gh-page
-      #     token: ${{ github.token }}
+      - name: Checkout gh-page
+        uses: actions/checkout@v4
+        with:
+          ref: gh-page
+          token: ${{ github.token }}
 
-      # - name: Commit
-      #   run: |
-      #     rm -rf ${{ github.workspace }}/book
-      #     scp -r ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/book  ${{ github.workspace }}/
-      #     cd ${{ github.workspace }}
+      - name: Commit
+        run: |
+          rm -rf ${{ github.workspace }}/book
+          scp -r ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/book  ${{ github.workspace }}/
+          cd ${{ github.workspace }}
 
-      #     git config --global user.name "IRainCoder"
-      #     git config --global user.email "weiqiang.ir@gmail.com"
-      #     git add .
-      #     git commit -am "更新"
+          git config --global user.name "IRainCoder"
+          git config --global user.email "weiqiang.ir@gmail.com"
+          git add .
+          git commit -am "更新"
       
-      # - name: Push changes
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #   run: |
-      #     git push
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git push
         
 
