@@ -47,7 +47,7 @@ jobs:
         run: |
           ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "if [ -d $GITBOOKDIR/notes ]; then sudo rm -rf $GITBOOKDIR/notes; fi"
           scp -r ${{ github.workspace }}/notes ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/
-          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "gitbook build"
+          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "source .bashrc && gitbook build"
       
       - name: Checkout gh-page
         uses: actions/checkout@v4
