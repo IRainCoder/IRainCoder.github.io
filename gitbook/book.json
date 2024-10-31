@@ -35,7 +35,9 @@
       "terminal",
       "copy-code-button",
       "alerts",
-      "klipse"
+      "klipse",
+      "code",
+      "expandable-chapters-small"
     ],
     "pluginsConfig": {
       "prism": {

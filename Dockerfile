@@ -3,6 +3,8 @@ FROM node:10.5-alpine
 # 安装 nodejs 的模块：gitbook 命令行
 RUN npm config set unsafe-perm true
 RUN npm install gitbook-cli -g
+# Gitbook 插件：自动生成 summary.md 文件内容
+RUN npm install gitbook-plugin-summary
 
 # 获取 gitbook 的官方版本并安装
 # 通过 gitbook ls-remote 可以列举额 npm 上可以安装的版本号
