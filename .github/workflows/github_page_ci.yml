@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  IMAGE: gitbook:3.2.3
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -29,12 +32,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Set up SSH
+      - name: Docker Info
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.AZURE_152_SECRET }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ vars.AZURE_152_HOST }}" >> ~/.ssh/known_hosts
+          docker info
+          docker version
       
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,13 +43,16 @@ jobs:
           ref: main
           token: ${{ github.token }}
       
+      - name: Build Docker Image
+        run: |
+          cd ${{ github.workspace }}
+          docker build -t $IMAGE .
+          ls -al ${{ github.workspace }}
+      
       - name: Gitbook Build
         run: |
-          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "if [ -d $GITBOOKDIR/notes ]; then sudo rm -rf $GITBOOKDIR/notes; fi"
-          sudo scp -r ${{ github.workspace }}/notes ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/
-          ssh ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }} "docker run --rm --name gitbook_v3.2.3 -v /home/v2ray/work/gitbook-docker/gitbook/notes:/gitbook/docs -v /home/v2ray/work/gitbook-docker/gitbook/book:/gitbook/_book -p 80:4000 gitbook:3.2.3 gitbook build"
-          sudo rm -rf ${{ github.workspace }}/book
-          scp -r ${{ vars.AZURE_152_USER }}@${{ vars.AZURE_152_HOST }}:$GITBOOKDIR/book  ${{ github.workspace }}/
+          docker run --rm --name gitbook_v3.2.3 -v ${{ github.workspace }}/notes:/gitbook/docs -v ${{ github.workspace }}/book:/gitbook/_book -p 80:4000 $IMAGE gitbook build
+          ls -al ${{ github.workspace }}
     
       - name: Setup Pages
         uses: actions/configure-pages@v5
