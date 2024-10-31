@@ -7,7 +7,7 @@
     "root" : "./docs",
     "links" : {
         "sidebar" : {
-            "IRain's Notes" : "https://iraincoder.github.io"
+            "IRain's Notes" : "./README.md"
         }
     },
     "plugins": [
