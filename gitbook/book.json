@@ -14,8 +14,6 @@
       "-lunr", 
       "-search", 
       "search-plus",
-      "prism",
-      "prism-themes",
       "-highlight",
       "advanced-emoji",
       "ace",
@@ -39,12 +37,6 @@
       "code",
       "expandable-chapters-small"
     ],
-    "pluginsConfig": {
-      "prism": {
-            "css": [
-                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-      },
       "include-codeblock": {
             "template": "ace",
             "unindent": true,
