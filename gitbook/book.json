@@ -1,74 +1,78 @@
 {
-"title": "IRain's Notes",
-"description": "随笔",
-"author": "IRain",
-"language" : "zh-hans",
-"gitbook" : "3.2.3",
-"root" : "./docs",
-"links" : {
-      "sidebar" : {
-            "IRain's Notes" : "https://iraincoder.github.io"
+      "title": "IRain's Notes",
+      "description": "随笔",
+      "author": "IRain",
+      "language" : "zh-hans",
+      "gitbook" : "3.2.3",
+      "root" : "./docs",
+      "links" : {
+            "sidebar" : {
+                  "IRain's Notes" : "https://iraincoder.github.io"
+            }
+      },
+      "plugins": [
+            "-lunr", 
+            "-search", 
+            "search-plus",
+            "prism",
+            "prism-themes",
+            "-highlight",
+            "advanced-emoji",
+            "ace",
+            "emphasize",
+            "katex",
+            "include-codeblock",
+            "splitter",
+            "mermaid-gb3",
+            "puml",
+            "graph",
+            "chart",
+            "tbfed-pagefooter",
+            "expandable-chapters-small",
+            "simple-page-toc",
+            "anchors",
+            "anchor-navigation-ex",
+            "terminal",
+            "alerts",
+            "klipse",
+            "code",
+            "expandable-chapters-small"
+      ],
+      "pluginsConfig": {
+            "prism": {
+                  "css": [
+                  "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+                  ]
+            },
+            "include-codeblock": {
+                  "template": "ace",
+                  "unindent": true,
+                  "theme": "monokai"
+            },
+            "chart": {
+                  "type": "c3"
+            },
+            "tbfed-pagefooter": {
+            "copyright":"Copyright@copy IRain 2024",
+            "modify_label": "最近更新时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+            },
+            "simple-page-toc": {
+                  "maxDepth": 3,
+                  "skipFirstH1": true
+            },
+            "anchor-navigation-ex": {
+                  "isRewritePageTitle": false,
+                  "tocLevel1Icon": "fa fa-hand-o-right",
+                  "tocLevel2Icon": "fa fa-hand-o-right",
+                  "tocLevel3Icon": "fa fa-hand-o-right"
+            },
+            "terminal": {
+                  "copyButtons": true,
+                  "fade": false,
+                  "style": "flat"
+            }
       }
-},
-"plugins": [
-      "-lunr", 
-      "-search", 
-      "search-plus",
-      "prism",
-      "prism-themes",
-      "-highlight",
-      "advanced-emoji",
-      "ace",
-      "emphasize",
-      "katex",
-      "include-codeblock",
-      "splitter",
-      "mermaid-gb3",
-      "puml",
-      "graph",
-      "chart",
-      "tbfed-pagefooter",
-      "expandable-chapters-small",
-      "simple-page-toc",
-      "anchors",
-      "anchor-navigation-ex",
-      "terminal",
-      "copy-code-button",
-      "alerts",
-      "klipse",
-      "code",
-      "expandable-chapters-small"
-],
-"pluginsConfig": {
-      "prism": {
-            "css": [
-            "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-      },
-      "include-codeblock": {
-            "template": "ace",
-            "unindent": true,
-            "theme": "monokai"
-      },
-      "chart": {
-            "type": "c3"
-      },
-      "tbfed-pagefooter": {
-      "copyright":"Copyright@copy IRain 2024",
-      "modify_label": "最近更新时间：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
-      },
-      "simple-page-toc": {
-            "maxDepth": 3,
-            "skipFirstH1": true
-      },
-      "anchor-navigation-ex": {
-            "isRewritePageTitle": false,
-            "tocLevel1Icon": "fa fa-hand-o-right",
-            "tocLevel2Icon": "fa fa-hand-o-right",
-            "tocLevel3Icon": "fa fa-hand-o-right"
-      }
-}
 }
 
 
