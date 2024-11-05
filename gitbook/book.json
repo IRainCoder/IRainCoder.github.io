@@ -1,19 +1,21 @@
 {
-    "title": "IRain's Notes",
-    "description": "随笔",
-    "author": "IRain",
-    "language" : "zh-hans",
-    "gitbook" : "3.2.3",
-    "root" : "./docs",
-    "links" : {
-        "sidebar" : {
+"title": "IRain's Notes",
+"description": "随笔",
+"author": "IRain",
+"language" : "zh-hans",
+"gitbook" : "3.2.3",
+"root" : "./docs",
+"links" : {
+      "sidebar" : {
             "IRain's Notes" : "https://iraincoder.github.io"
-        }
-    },
-    "plugins": [
+      }
+},
+"plugins": [
       "-lunr", 
       "-search", 
       "search-plus",
+      "prism",
+      "prism-themes",
       "-highlight",
       "advanced-emoji",
       "ace",
@@ -36,7 +38,13 @@
       "klipse",
       "code",
       "expandable-chapters-small"
-    ],
+],
+"pluginsConfig": {
+      "prism": {
+            "css": [
+            "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+      },
       "include-codeblock": {
             "template": "ace",
             "unindent": true,
@@ -46,9 +54,9 @@
             "type": "c3"
       },
       "tbfed-pagefooter": {
-        "copyright":"Copyright@copy IRain 2024",
-        "modify_label": "最近更新时间：",
-        "modify_format": "YYYY-MM-DD HH:mm:ss"
+      "copyright":"Copyright@copy IRain 2024",
+      "modify_label": "最近更新时间：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
       },
       "simple-page-toc": {
             "maxDepth": 3,
@@ -59,13 +67,8 @@
             "tocLevel1Icon": "fa fa-hand-o-right",
             "tocLevel2Icon": "fa fa-hand-o-right",
             "tocLevel3Icon": "fa fa-hand-o-right"
-      },
-      "terminal": {
-            "copyButtons": true,
-            "fade": false,
-            "style": "flat"
       }
 }
-
+}
 
 
