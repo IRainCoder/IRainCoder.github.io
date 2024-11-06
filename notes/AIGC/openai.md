@@ -8,15 +8,11 @@ OpenAI API采用API密钥机制进行身份验证，以确保访问的安全性�
 
 - 用户密钥：提供对用户已添加到的所有组织和所有项目的访问。
 
-
-
 所有API请求都应在`授权`HTTP标头中包含您的API密钥，如下所示：
 
 ```http
 Authorization: Bearer OPENAI_API_KEY
 ```
-
-
 
 ## 第一个请求
 
@@ -38,8 +34,6 @@ curl https://api.openai.com/v1/chat/completions \
 > ```http
 > OpenAI-Organization: org-RV6wQKGeHBTR1scNzuHyi82u
 > ```
-
-
 
 响应：
 
@@ -77,5 +71,3 @@ curl https://api.openai.com/v1/chat/completions \
   "system_fingerprint": "fp_0ba0d124f1"
 }
 ```
-
-
