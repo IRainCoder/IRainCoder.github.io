@@ -8,11 +8,9 @@
 
 
 
-
-
 **技术栈**
 
-- Python + Django + DjangoRESTFramework
+- Python + Django + Django REST framework
 
 - Golang + Protobuf + Kratos
 
